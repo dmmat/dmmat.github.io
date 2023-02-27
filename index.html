@@ -12,26 +12,31 @@
     <title>Dmytro Matsiuk</title>
 
     <style>
+        /* light mode */
         body {
             font-family: Arial, sans-serif;
             font-size: 16px;
             line-height: 1.5;
-            margin: 0;
+            margin: 20px;
             padding: 0;
-            color: #000;
-            background-color: #fff;
+            height: 90vh;
+            color: #2d2d2d;
+            background-color: #f8f8f8;
+            background-image: linear-gradient(to bottom right, #cdfffd, #e3fff8, #89c0ff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
         }
 
         a {
-            color: #000;
+            color: #2d2d2d;
             text-decoration: none;
-            border-bottom: 1px solid #000;
+            border-bottom: 1px solid #2d2d2d;
             transition: all 0.2s ease-in-out;
         }
 
         a:hover {
-            color: #f00;
-            border-bottom: 1px solid #f00;
+            color: #e53935;
+            border-bottom: 1px solid #e53935;
         }
 
         ul {
@@ -47,20 +52,36 @@
         /* dark mode */
         @media (prefers-color-scheme: dark) {
             body {
-                color: #fff;
-                background-color: #000;
+                color: #f8f8f8;
+                background-color: #004d29;
+                background-image: linear-gradient(to bottom right, #004f10, #003739, #333);
             }
 
             a {
-                color: #fff;
-                border-bottom: 1px solid #fff;
+                color: #f8f8f8;
+                border-bottom: 1px solid #f8f8f8;
             }
 
             a:hover {
-                color: #f00;
-                border-bottom: 1px solid #f00;
+                color: #e53935;
+                border-bottom: 1px solid #e53935;
             }
         }
+
+
+        /* background animation */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
     </style>
 
     <script type="application/ld+json">
