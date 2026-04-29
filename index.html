@@ -2,21 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description"
-          content="Public projects by Dmytro Matsiuk: BadgeGEN certificate badge generator, Stamp generator for Ukraine, DX film code decoder, random YouTube video picker, Reinvented New Tab Chrome extension, and a fake Ukrainian Taxpayer registration card number generator for test environments.">
-    <meta name="keywords"
-          content="Dmytro Matsiuk, BadgeGEN, stamp generator, Ukraine stamp, DX decoder, random video, YouTube, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, test environment">
-    <meta name="author" content="Dmytro Matsiuk">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#0b0f12">
 
+    <title>Dmytro Matsiuk — projects, tools & weekend experiments</title>
+    <meta name="description"
+          content="Public projects by Dmytro Matsiuk: BadgeGEN badge generator, Stamp generator for Ukraine, DX film code decoder, random YouTube video picker, Reinvented New Tab Chrome extension, and a fake Ukrainian Taxpayer (TRCN) ID generator for test environments.">
+    <meta name="keywords"
+          content="Dmytro Matsiuk, dmmat, BadgeGEN, stamp generator, Ukraine stamp, DX decoder, random video, YouTube, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, TRCN, test environment">
+    <meta name="author" content="Dmytro Matsiuk">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://dmat.pp.ua/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Dmytro Matsiuk">
+    <meta property="og:title" content="Dmytro Matsiuk — projects, tools & weekend experiments">
+    <meta property="og:description" content="Small tools, side projects and weekend experiments — BadgeGEN, stamp, DX-decoder, ytrandi and more.">
+    <meta property="og:url" content="https://dmat.pp.ua/">
+    <meta property="og:image" content="https://dmat.pp.ua/og.png">
+    <meta property="og:image:secure_url" content="https://dmat.pp.ua/og.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Dmytro Matsiuk — retro terminal-style project list">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dmytro Matsiuk — projects, tools & weekend experiments">
+    <meta name="twitter:description" content="Small tools, side projects and weekend experiments — BadgeGEN, stamp, DX-decoder, ytrandi and more.">
+    <meta name="twitter:image" content="https://dmat.pp.ua/og.png">
+    <meta name="twitter:image:alt" content="Dmytro Matsiuk — retro terminal-style project list">
+
+    <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/og.png">
 
-    <title>Dmytro Matsiuk // projects</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Performance: preconnect + non-blocking font load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="preload" as="style"
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap"
+          media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap">
+    </noscript>
 
     <style>
         :root {
@@ -66,22 +101,59 @@
                 linear-gradient(140deg, #1a0b2e 0%, #0a1428 50%, #051a1a 100%);
             background-size: 220% 220%;
             filter: blur(60px) saturate(140%);
-            animation: drift 28s ease-in-out infinite, hue 18s linear infinite;
+            animation: drift 60s linear infinite, hue 24s ease-in-out infinite;
             will-change: background-position, transform, filter;
         }
 
+        /* Seamless loop: 0% and 100% are identical, intermediate frames
+           orbit each color through a closed circular path so there is no
+           snap at the boundary. */
         @keyframes drift {
-            0%   { background-position:   0%   0%, 100%   0%, 100% 100%,   0% 100%,  50%  50%, 0% 0%; transform: scale(1) rotate(0deg); }
-            25%  { background-position:  20%  30%,  80%  20%,  60%  80%,  30%  70%,  60%  40%, 0% 0%; transform: scale(1.04) rotate(0.4deg); }
-            50%  { background-position:  60%  60%,  40%  50%,  40%  40%,  60%  40%,  40%  60%, 0% 0%; transform: scale(1.06) rotate(0deg); }
-            75%  { background-position:  80%  40%,  20%  70%,  20%  60%,  70%  20%,  30%  70%, 0% 0%; transform: scale(1.03) rotate(-0.4deg); }
-            100% { background-position: 100% 100%,   0% 100%,   0%   0%, 100%   0%,  50%  50%, 0% 0%; transform: scale(1) rotate(0deg); }
+            0%, 100% {
+                background-position:
+                    0%   50%,
+                  100%   50%,
+                   50% 100%,
+                   50%   0%,
+                   50%  50%,
+                    0%   0%;
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                background-position:
+                   25%  25%,
+                   75%  75%,
+                   75%  25%,
+                   25%  75%,
+                   60%  40%,
+                    0%   0%;
+                transform: scale(1.03) rotate(0.3deg);
+            }
+            50% {
+                background-position:
+                  100%  50%,
+                    0%  50%,
+                   50%   0%,
+                   50% 100%,
+                   50%  50%,
+                    0%   0%;
+                transform: scale(1.05) rotate(0deg);
+            }
+            75% {
+                background-position:
+                   75%  75%,
+                   25%  25%,
+                   25%  75%,
+                   75%  25%,
+                   40%  60%,
+                    0%   0%;
+                transform: scale(1.03) rotate(-0.3deg);
+            }
         }
 
         @keyframes hue {
-            0%   { filter: blur(60px) saturate(140%) hue-rotate(0deg); }
-            50%  { filter: blur(60px) saturate(150%) hue-rotate(20deg); }
-            100% { filter: blur(60px) saturate(140%) hue-rotate(0deg); }
+            0%, 100% { filter: blur(60px) saturate(140%) hue-rotate(0deg); }
+            50%      { filter: blur(60px) saturate(150%) hue-rotate(18deg); }
         }
 
         /* dark mask, grid, scanlines */
@@ -499,15 +571,116 @@
     </style>
 
     <script type="application/ld+json">
-        {
-            "@context": "http://schema.org",
-            "@type": "Person",
-            "name": "Dmytro Matsiuk",
-            "url": "https://dmmat.github.io/",
-            "sameAs": [
-                "https://github.com/dmmat"
-            ]
-        }
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": "https://dmat.pp.ua/#person",
+                "name": "Dmytro Matsiuk",
+                "alternateName": "dmmat",
+                "url": "https://dmat.pp.ua/",
+                "sameAs": [
+                    "https://github.com/dmmat"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://dmat.pp.ua/#website",
+                "url": "https://dmat.pp.ua/",
+                "name": "Dmytro Matsiuk",
+                "description": "Personal project hub — small tools, side projects and weekend experiments.",
+                "inLanguage": "en",
+                "author": { "@id": "https://dmat.pp.ua/#person" }
+            },
+            {
+                "@type": "ItemList",
+                "@id": "https://dmat.pp.ua/#projects",
+                "name": "Projects by Dmytro Matsiuk",
+                "itemListOrder": "https://schema.org/ItemListOrderDescending",
+                "numberOfItems": 6,
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "item": {
+                            "@type": "SoftwareApplication",
+                            "name": "BadgeGEN",
+                            "applicationCategory": "WebApplication",
+                            "operatingSystem": "Any",
+                            "url": "https://dmmat.github.io/BadgeGEN/",
+                            "codeRepository": "https://github.com/dmmat/BadgeGEN",
+                            "description": "Browser-based generator for printable name badges, certificates and event passes."
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "item": {
+                            "@type": "SoftwareApplication",
+                            "name": "stamp",
+                            "applicationCategory": "WebApplication",
+                            "operatingSystem": "Any",
+                            "url": "https://dmmat.github.io/stamp/",
+                            "codeRepository": "https://github.com/dmmat/stamp",
+                            "description": "Stamp generator for Ukrainian sole proprietors and companies. Exports SVG, PNG and DXF."
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "item": {
+                            "@type": "SoftwareApplication",
+                            "name": "DX-decoder",
+                            "applicationCategory": "WebApplication",
+                            "operatingSystem": "Any",
+                            "url": "https://dmat.pp.ua/DX-decoder/",
+                            "codeRepository": "https://github.com/dmmat/DX-decoder",
+                            "description": "Decoder for the DX-encoded barcode printed on 35mm film canisters."
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 4,
+                        "item": {
+                            "@type": "SoftwareApplication",
+                            "name": "ytrandi",
+                            "applicationCategory": "WebApplication",
+                            "operatingSystem": "Any",
+                            "url": "https://dmat.pp.ua/ytrandi/",
+                            "codeRepository": "https://github.com/dmmat/ytrandi",
+                            "description": "Pick a truly random video from any YouTube channel."
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 5,
+                        "item": {
+                            "@type": "SoftwareApplication",
+                            "name": "Reinvented New Tab",
+                            "applicationCategory": "BrowserApplication",
+                            "operatingSystem": "Chrome",
+                            "url": "https://chrome.google.com/webstore/detail/reinvented-new-tab/mlbndllbhcdpjmalnmgljlfengkchdkk",
+                            "description": "A minimal, distraction-free new-tab page for Chrome."
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 6,
+                        "item": {
+                            "@type": "SoftwareApplication",
+                            "name": "fake_ua_tax_id",
+                            "applicationCategory": "WebApplication",
+                            "operatingSystem": "Any",
+                            "url": "https://dmat.pp.ua/fake_ua_tax_id/",
+                            "codeRepository": "https://github.com/dmmat/fake_ua_tax_id",
+                            "description": "Generate fake Ukrainian Taxpayer Registration Card Numbers (TRCN) for test environments."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
     </script>
 </head>
 <body>
