@@ -19,7 +19,6 @@
     <style>
         :root {
             --bg: #07090c;
-            --bg-soft: rgba(255, 255, 255, 0.04);
             --bg-line: rgba(255, 255, 255, 0.08);
             --fg: #e8f1ec;
             --muted: #8a96a0;
@@ -31,7 +30,6 @@
         }
 
         * { box-sizing: border-box; }
-
         html, body { margin: 0; padding: 0; }
 
         body {
@@ -45,56 +43,54 @@
             position: relative;
         }
 
-        /* Layer 1: shifting color gradient (the “alive” backdrop) */
+        /* === Animated gradient background === */
         .bg-gradient {
             position: fixed;
-            inset: -10%;
+            inset: -15%;
             z-index: 0;
             background:
-                radial-gradient(40% 35% at 18% 22%, #ff5c8a 0%, transparent 60%),
-                radial-gradient(45% 40% at 82% 18%, #7aa6ff 0%, transparent 60%),
+                radial-gradient(38% 32% at 18% 22%, #ff5c8a 0%, transparent 60%),
+                radial-gradient(45% 38% at 82% 18%, #7aa6ff 0%, transparent 60%),
                 radial-gradient(55% 45% at 70% 80%, #6cf0a7 0%, transparent 60%),
-                radial-gradient(45% 40% at 20% 85%, #ffb454 0%, transparent 60%),
+                radial-gradient(45% 38% at 20% 85%, #ffb454 0%, transparent 60%),
+                radial-gradient(40% 35% at 50% 50%, #b95cff 0%, transparent 60%),
                 linear-gradient(140deg, #1a0b2e 0%, #0a1428 50%, #051a1a 100%);
-            background-size: 200% 200%;
-            filter: blur(40px) saturate(120%);
-            animation: drift 22s ease-in-out infinite alternate;
+            background-size: 220% 220%;
+            filter: blur(60px) saturate(140%);
+            animation: drift 28s ease-in-out infinite, hue 18s linear infinite;
+            will-change: background-position, transform, filter;
         }
 
         @keyframes drift {
-            0%   { background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%; transform: scale(1); }
-            50%  { background-position: 30% 20%, 70% 30%, 60% 70%, 30% 70%, 0% 0%; transform: scale(1.05); }
-            100% { background-position: 100% 100%, 0% 100%, 0% 0%, 100% 0%, 0% 0%; transform: scale(1); }
+            0%   { background-position:   0%   0%, 100%   0%, 100% 100%,   0% 100%,  50%  50%, 0% 0%; transform: scale(1) rotate(0deg); }
+            25%  { background-position:  20%  30%,  80%  20%,  60%  80%,  30%  70%,  60%  40%, 0% 0%; transform: scale(1.04) rotate(0.4deg); }
+            50%  { background-position:  60%  60%,  40%  50%,  40%  40%,  60%  40%,  40%  60%, 0% 0%; transform: scale(1.06) rotate(0deg); }
+            75%  { background-position:  80%  40%,  20%  70%,  20%  60%,  70%  20%,  30%  70%, 0% 0%; transform: scale(1.03) rotate(-0.4deg); }
+            100% { background-position: 100% 100%,   0% 100%,   0%   0%, 100%   0%,  50%  50%, 0% 0%; transform: scale(1) rotate(0deg); }
         }
 
-        /* Layer 2: dark mask to keep contrast */
+        @keyframes hue {
+            0%   { filter: blur(60px) saturate(140%) hue-rotate(0deg); }
+            50%  { filter: blur(60px) saturate(150%) hue-rotate(20deg); }
+            100% { filter: blur(60px) saturate(140%) hue-rotate(0deg); }
+        }
+
+        /* dark mask, grid, scanlines */
         .bg-mask {
-            position: fixed;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
+            position: fixed; inset: 0; z-index: 1; pointer-events: none;
             background:
                 radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.78) 100%),
                 linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
         }
-
-        /* Layer 3: grid + scanlines for the CRT vibe */
         .bg-grid {
-            position: fixed;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
+            position: fixed; inset: 0; z-index: 2; pointer-events: none;
             background-image:
                 linear-gradient(var(--grid) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid) 1px, transparent 1px);
             background-size: 32px 32px;
         }
-
         .bg-scan {
-            position: fixed;
-            inset: 0;
-            z-index: 3;
-            pointer-events: none;
+            position: fixed; inset: 0; z-index: 3; pointer-events: none;
             background: repeating-linear-gradient(
                 to bottom,
                 rgba(0, 0, 0, 0.0) 0,
@@ -112,7 +108,7 @@
             padding: 48px 24px 80px;
         }
 
-        /* Top status bar */
+        /* === Top bar === */
         .topbar {
             display: flex;
             align-items: center;
@@ -164,15 +160,14 @@
             margin-left: 2px;
             animation: caret 1s steps(2) infinite;
         }
-
         @keyframes caret { 50% { background: transparent; } }
 
-        /* Panel */
+        /* === Panel === */
         .panel {
             border: 1px solid var(--bg-line);
-            background: rgba(7, 9, 12, 0.55);
-            backdrop-filter: blur(8px) saturate(110%);
-            -webkit-backdrop-filter: blur(8px) saturate(110%);
+            background: rgba(7, 9, 12, 0.58);
+            backdrop-filter: blur(10px) saturate(120%);
+            -webkit-backdrop-filter: blur(10px) saturate(120%);
             padding: 8px 0;
             border-radius: 6px;
             box-shadow:
@@ -192,60 +187,49 @@
             color: var(--muted);
         }
 
-        /* Project rows */
-        ul.projects {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+        ul.projects { list-style: none; margin: 0; padding: 0; }
 
         ul.projects li {
             padding: 18px 18px 20px;
             border-bottom: 1px dashed var(--bg-line);
             transition: background 0.2s ease;
         }
-
         ul.projects li:last-child { border-bottom: none; }
-        ul.projects li:hover { background: rgba(255,255,255,0.02); }
+        ul.projects li:hover { background: rgba(255,255,255,0.025); }
 
+        /* === Row header (idx + title + tag) === */
         .row-head {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 14px;
-            align-items: baseline;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .idx {
             color: var(--muted);
             font-size: 12px;
             min-width: 3ch;
+            flex: 0 0 auto;
         }
 
-        .row-head a.title {
+        .row-head .title {
             color: var(--fg);
-            text-decoration: none;
             font-weight: 700;
-            border-bottom: 1px solid transparent;
+            font-size: 16px;
+            flex: 0 1 auto;
         }
 
-        .row-head a.title:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-            text-shadow: 0 0 8px rgba(108, 240, 167, 0.45);
-        }
-
+        /* === Description === */
         .desc {
             color: var(--fg);
             font-size: 13.5px;
             line-height: 1.6;
-            margin: 8px 0 0;
+            margin: 10px 0 0;
             padding: 8px 12px 8px 14px;
             border-left: 2px solid var(--accent);
             background: rgba(108, 240, 167, 0.04);
             border-radius: 0 4px 4px 0;
-            position: relative;
         }
-
         .desc::before {
             content: "$";
             color: var(--accent);
@@ -253,74 +237,134 @@
             font-weight: 700;
         }
 
+        /* === Footer of a row: meta + actions === */
+        .row-foot {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
         .meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px 14px;
-            margin-top: 10px;
+            gap: 8px 12px;
             font-size: 11px;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 0.14em;
         }
-
-        .meta .k { color: var(--muted); }
         .meta .v { color: var(--fg); }
         .meta .sep { opacity: 0.4; }
 
-        /* Tags */
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--fg);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--bg-line);
+            border-radius: 3px;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            color: var(--bg);
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(108, 240, 167, 0.45);
+        }
+
+        .btn.btn-src:hover {
+            background: var(--accent-4);
+            border-color: var(--accent-4);
+            box-shadow: 0 0 12px rgba(122, 166, 255, 0.45);
+        }
+
+        .btn.btn-store:hover {
+            background: var(--accent-2);
+            border-color: var(--accent-2);
+            box-shadow: 0 0 12px rgba(255, 180, 84, 0.45);
+        }
+
+        .btn .ico {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+        }
+
+        /* === Tags (inline next to title) === */
         .tag {
             font-size: 10px;
-            padding: 2px 8px;
+            padding: 1px 7px;
             border: 1px solid var(--muted);
             color: var(--muted);
             border-radius: 999px;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             white-space: nowrap;
-            align-self: center;
         }
-
         .tag.new {
             color: var(--bg);
             background: var(--accent);
             border-color: var(--accent);
             box-shadow: 0 0 12px rgba(108, 240, 167, 0.4);
         }
-        .tag.ext { color: var(--accent-2); border-color: var(--accent-2); }
-        .tag.archive { color: var(--muted); border-color: var(--muted); opacity: 0.7; }
 
         footer {
             margin-top: 32px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            align-items: center;
             gap: 16px;
             color: var(--muted);
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.18em;
         }
-
         footer a {
             color: var(--fg);
             text-decoration: none;
             border-bottom: 1px solid var(--muted);
         }
+        footer a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-        footer a:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
+        .ua-flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+        }
+        .ua-flag svg {
+            width: 22px;
+            height: 14px;
+            display: block;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.15), 0 0 8px rgba(122, 166, 255, 0.25);
+            border-radius: 1px;
         }
 
+        /* === Mobile === */
         @media (max-width: 540px) {
             .wrap { padding: 28px 16px 60px; }
-            .row-head { grid-template-columns: auto 1fr; }
-            .row-head .tag {
-                grid-column: 2 / 3;
-                justify-self: start;
-                margin-top: 4px;
-            }
+            .row-head { gap: 8px; }
+            .row-foot { flex-direction: column; align-items: flex-start; }
+            .actions { width: 100%; }
+            .btn { flex: 1 0 auto; justify-content: center; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -343,6 +387,24 @@
 </head>
 <body>
 
+<!-- Pixel-art icons used inline -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <!-- Browser window: pixel-perfect retro -->
+        <symbol id="i-web" viewBox="0 0 10 8" shape-rendering="crispEdges">
+            <path fill="currentColor" d="M0 0h10v1H0zM0 7h10v1H0zM0 0h1v8H0zM9 0h1v8H9zM0 2h10v1H0zM2 1h1v1H2zM4 1h1v1H4zM6 1h1v1H6z"/>
+        </symbol>
+        <!-- Code chevrons: < > -->
+        <symbol id="i-src" viewBox="0 0 10 8" shape-rendering="crispEdges">
+            <path fill="currentColor" d="M3 1h1v1H3zM2 2h1v1H2zM1 3h1v2H1zM2 5h1v1H2zM3 6h1v1H3zM6 1h1v1H6zM7 2h1v1H7zM8 3h1v2H8zM7 5h1v1H7zM6 6h1v1H6z"/>
+        </symbol>
+        <!-- Storefront / cart: chrome web store -->
+        <symbol id="i-store" viewBox="0 0 10 8" shape-rendering="crispEdges">
+            <path fill="currentColor" d="M0 1h2v1H0zM2 2h6v1H2zM3 3h5v1H3zM3 4h5v1H3zM3 5h1v1H3zM7 5h1v1H7zM2 6h1v1H2zM4 6h1v1H4zM6 6h1v1H6zM8 6h1v1H8z"/>
+        </symbol>
+    </defs>
+</svg>
+
 <div class="bg-gradient" aria-hidden="true"></div>
 <div class="bg-mask" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
@@ -351,7 +413,7 @@
 <div class="wrap">
     <div class="topbar">
         <span><span class="dot"></span>online</span>
-        <span>v2.0 // 2026</span>
+        <span>v2.1 // 2026</span>
     </div>
 
     <h1>Dmytro Matsiuk</h1>
@@ -369,108 +431,161 @@
             <li>
                 <div class="row-head">
                     <span class="idx">01</span>
-                    <a class="title" href="https://github.com/dmmat/BadgeGEN">BadgeGEN</a>
+                    <span class="title">BadgeGEN</span>
                     <span class="tag new">new</span>
                 </div>
                 <p class="desc">
                     Browser-based generator for printable name badges, certificates and event passes. Drop in a CSV, pick a layout, export ready-to-print sheets — no signup, no backend.
                 </p>
-                <div class="meta">
-                    <span><span class="k">stack</span> <span class="v">TypeScript</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">type</span> <span class="v">web app</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">year</span> <span class="v">2025</span></span>
+                <div class="row-foot">
+                    <div class="meta">
+                        <span><span class="v">TypeScript</span></span>
+                        <span class="sep">·</span>
+                        <span>web app</span>
+                        <span class="sep">·</span>
+                        <span>2025</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-web" href="https://dmmat.github.io/BadgeGEN/" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-web"/></svg> live
+                        </a>
+                        <a class="btn btn-src" href="https://github.com/dmmat/BadgeGEN" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-src"/></svg> source
+                        </a>
+                    </div>
                 </div>
             </li>
 
             <li>
                 <div class="row-head">
                     <span class="idx">02</span>
-                    <a class="title" href="https://github.com/dmmat/stamp">stamp</a>
+                    <span class="title">stamp</span>
                     <span class="tag new">new</span>
                 </div>
                 <p class="desc">
-                    Генератор печаток для українських ФОП та компаній. Налаштовуєш текст і вигляд у браузері — отримуєш SVG, PNG або DXF готовий для друкарні чи лазерного гравера.
+                    Stamp generator for Ukrainian sole proprietors and companies. Configure the text and look in the browser, then export an SVG, PNG or DXF ready for a print shop or a laser engraver.
                 </p>
-                <div class="meta">
-                    <span><span class="k">stack</span> <span class="v">JavaScript / SVG</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">type</span> <span class="v">web app</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">year</span> <span class="v">2026</span></span>
+                <div class="row-foot">
+                    <div class="meta">
+                        <span><span class="v">JavaScript / SVG</span></span>
+                        <span class="sep">·</span>
+                        <span>web app</span>
+                        <span class="sep">·</span>
+                        <span>2026</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-web" href="https://dmmat.github.io/stamp/" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-web"/></svg> live
+                        </a>
+                        <a class="btn btn-src" href="https://github.com/dmmat/stamp" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-src"/></svg> source
+                        </a>
+                    </div>
                 </div>
             </li>
 
             <li>
                 <div class="row-head">
                     <span class="idx">03</span>
-                    <a class="title" href="/DX-decoder/">DX-decoder</a>
-                    <span class="tag">web</span>
+                    <span class="title">DX-decoder</span>
                 </div>
                 <p class="desc">
                     Decode the DX-encoded barcode printed on 35mm film canisters. Paste the pattern, get back the ISO speed, exposures and latitude — handy for analog photography geeks.
                 </p>
-                <div class="meta">
-                    <span><span class="k">stack</span> <span class="v">HTML / JS</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">type</span> <span class="v">tool</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">year</span> <span class="v">2023</span></span>
+                <div class="row-foot">
+                    <div class="meta">
+                        <span><span class="v">HTML / JS</span></span>
+                        <span class="sep">·</span>
+                        <span>tool</span>
+                        <span class="sep">·</span>
+                        <span>2023</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-web" href="/DX-decoder/">
+                            <svg class="ico"><use href="#i-web"/></svg> live
+                        </a>
+                        <a class="btn btn-src" href="https://github.com/dmmat/DX-decoder" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-src"/></svg> source
+                        </a>
+                    </div>
                 </div>
             </li>
 
             <li>
                 <div class="row-head">
                     <span class="idx">04</span>
-                    <a class="title" href="/ytrandi/">ytrandi</a>
-                    <span class="tag">web</span>
+                    <span class="title">ytrandi</span>
                 </div>
                 <p class="desc">
                     Pick a truly random video from any YouTube channel. Useful for rediscovering archives or jumping past the algorithm’s recommendations.
                 </p>
-                <div class="meta">
-                    <span><span class="k">stack</span> <span class="v">JavaScript</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">type</span> <span class="v">tool</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">year</span> <span class="v">2019</span></span>
+                <div class="row-foot">
+                    <div class="meta">
+                        <span><span class="v">JavaScript</span></span>
+                        <span class="sep">·</span>
+                        <span>tool</span>
+                        <span class="sep">·</span>
+                        <span>2019</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-web" href="/ytrandi/">
+                            <svg class="ico"><use href="#i-web"/></svg> live
+                        </a>
+                        <a class="btn btn-src" href="https://github.com/dmmat/ytrandi" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-src"/></svg> source
+                        </a>
+                    </div>
                 </div>
             </li>
 
             <li>
                 <div class="row-head">
                     <span class="idx">05</span>
-                    <a class="title" href="https://chrome.google.com/webstore/detail/reinvented-new-tab/mlbndllbhcdpjmalnmgljlfengkchdkk">Reinvented New Tab</a>
-                    <span class="tag ext">chrome</span>
+                    <span class="title">Reinvented New Tab</span>
                 </div>
                 <p class="desc">
                     A minimal new-tab page for Chrome — replaces the default screen with something quiet, distraction-free and fast. Available in the Chrome Web Store.
                 </p>
-                <div class="meta">
-                    <span><span class="k">stack</span> <span class="v">JavaScript</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">type</span> <span class="v">extension</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">year</span> <span class="v">2018</span></span>
+                <div class="row-foot">
+                    <div class="meta">
+                        <span><span class="v">JavaScript</span></span>
+                        <span class="sep">·</span>
+                        <span>extension</span>
+                        <span class="sep">·</span>
+                        <span>2018</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-store" href="https://chrome.google.com/webstore/detail/reinvented-new-tab/mlbndllbhcdpjmalnmgljlfengkchdkk" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-store"/></svg> chrome store
+                        </a>
+                    </div>
                 </div>
             </li>
 
             <li>
                 <div class="row-head">
                     <span class="idx">06</span>
-                    <a class="title" href="/fake_ua_tax_id/">fake_ua_tax_id</a>
-                    <span class="tag">web</span>
+                    <span class="title">fake_ua_tax_id</span>
                 </div>
                 <p class="desc">
                     Generate syntactically valid (but fake) Ukrainian Taxpayer Registration Card Numbers — TRCN / ІПН — for filling test environments and QA fixtures. Not for real-world use.
                 </p>
-                <div class="meta">
-                    <span><span class="k">stack</span> <span class="v">HTML / JS</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">type</span> <span class="v">tool</span></span>
-                    <span class="sep">·</span>
-                    <span><span class="k">year</span> <span class="v">2019</span></span>
+                <div class="row-foot">
+                    <div class="meta">
+                        <span><span class="v">HTML / JS</span></span>
+                        <span class="sep">·</span>
+                        <span>tool</span>
+                        <span class="sep">·</span>
+                        <span>2019</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-web" href="/fake_ua_tax_id/">
+                            <svg class="ico"><use href="#i-web"/></svg> live
+                        </a>
+                        <a class="btn btn-src" href="https://github.com/dmmat/fake_ua_tax_id" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-src"/></svg> source
+                        </a>
+                    </div>
                 </div>
             </li>
 
@@ -478,7 +593,13 @@
     </section>
 
     <footer>
-        <span>&copy; Dmytro Matsiuk</span>
+        <span class="ua-flag" title="Made in Ukraine">
+            <svg viewBox="0 0 22 14" shape-rendering="crispEdges" aria-hidden="true">
+                <rect width="22" height="7" fill="#0057B7"/>
+                <rect y="7" width="22" height="7" fill="#FFD700"/>
+            </svg>
+            &copy; Dmytro Matsiuk
+        </span>
         <span><a href="https://github.com/dmmat">github.com/dmmat</a></span>
     </footer>
 </div>
