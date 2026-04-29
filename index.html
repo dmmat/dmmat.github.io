@@ -3,85 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description"
-          content="Discover Dmytro Matsiuk's public projects, including a random video service from YouTube channels, a Reinvented New Tab extension for Chrome, and a tool to generate fake Ukrainian Taxpayer registration card numbers for test environments.">
+          content="Public projects by Dmytro Matsiuk: BadgeGEN certificate badge generator, Stamp generator for Ukraine, DX film code decoder, random YouTube video picker, Reinvented New Tab Chrome extension, and a fake Ukrainian Taxpayer registration card number generator for test environments.">
     <meta name="keywords"
-          content="Dmytro Matsiuk, random video, YouTube, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, test environment">
+          content="Dmytro Matsiuk, BadgeGEN, stamp generator, Ukraine stamp, DX decoder, random video, YouTube, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, test environment">
     <meta name="author" content="Dmytro Matsiuk">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0f12">
 
-    <title>Dmytro Matsiuk</title>
+    <title>Dmytro Matsiuk // projects</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
 
     <style>
-        /* light mode */
+        :root {
+            --bg: #07090c;
+            --bg-soft: rgba(255, 255, 255, 0.04);
+            --bg-line: rgba(255, 255, 255, 0.08);
+            --fg: #e8f1ec;
+            --muted: #8a96a0;
+            --accent: #6cf0a7;
+            --accent-2: #ffb454;
+            --accent-3: #ff5c8a;
+            --accent-4: #7aa6ff;
+            --grid: rgba(255, 255, 255, 0.04);
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body { margin: 0; padding: 0; }
+
         body {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.5;
-            margin: 20px;
-            padding: 0;
-            height: 90vh;
-            color: #2d2d2d;
-            background-color: #f8f8f8;
-            background-image: linear-gradient(to bottom right, #cdfffd, #e3fff8, #89c0ff);
-            background-size: 400% 400%;
-            animation: gradientAnimation 10s ease infinite;
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 15px;
+            line-height: 1.55;
+            color: var(--fg);
+            background: var(--bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        a {
-            color: #2d2d2d;
-            text-decoration: none;
-            border-bottom: 1px solid #2d2d2d;
-            transition: all 0.2s ease-in-out;
+        /* Layer 1: shifting color gradient (the “alive” backdrop) */
+        .bg-gradient {
+            position: fixed;
+            inset: -10%;
+            z-index: 0;
+            background:
+                radial-gradient(40% 35% at 18% 22%, #ff5c8a 0%, transparent 60%),
+                radial-gradient(45% 40% at 82% 18%, #7aa6ff 0%, transparent 60%),
+                radial-gradient(55% 45% at 70% 80%, #6cf0a7 0%, transparent 60%),
+                radial-gradient(45% 40% at 20% 85%, #ffb454 0%, transparent 60%),
+                linear-gradient(140deg, #1a0b2e 0%, #0a1428 50%, #051a1a 100%);
+            background-size: 200% 200%;
+            filter: blur(40px) saturate(120%);
+            animation: drift 22s ease-in-out infinite alternate;
         }
 
-        a:hover {
-            color: #e53935;
-            border-bottom: 1px solid #e53935;
+        @keyframes drift {
+            0%   { background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%; transform: scale(1); }
+            50%  { background-position: 30% 20%, 70% 30%, 60% 70%, 30% 70%, 0% 0%; transform: scale(1.05); }
+            100% { background-position: 100% 100%, 0% 100%, 0% 0%, 100% 0%, 0% 0%; transform: scale(1); }
         }
 
-        ul {
-            list-style-type: none;
+        /* Layer 2: dark mask to keep contrast */
+        .bg-mask {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.78) 100%),
+                linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+        }
+
+        /* Layer 3: grid + scanlines for the CRT vibe */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .bg-scan {
+            position: fixed;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.0) 0,
+                rgba(0, 0, 0, 0.0) 2px,
+                rgba(0, 0, 0, 0.18) 3px
+            );
+            mix-blend-mode: multiply;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 4;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        /* Top status bar */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-bottom: 24px;
+        }
+
+        .topbar .dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 8px var(--accent);
+            animation: blink 1.6s steps(2, start) infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink { to { opacity: 0.25; } }
+
+        h1 {
+            font-family: 'VT323', 'JetBrains Mono', monospace;
+            font-size: clamp(44px, 8vw, 80px);
+            line-height: 1;
+            margin: 8px 0 0;
+            letter-spacing: 0.02em;
+            color: var(--fg);
+            text-shadow:
+                2px 0 var(--accent-3),
+                -2px 0 var(--accent),
+                0 0 18px rgba(108, 240, 167, 0.25);
+        }
+
+        .tagline {
+            color: var(--muted);
+            margin: 16px 0 32px;
+            max-width: 60ch;
+        }
+
+        .tagline .caret {
+            display: inline-block;
+            width: 0.6ch;
+            background: var(--accent);
+            color: var(--accent);
+            margin-left: 2px;
+            animation: caret 1s steps(2) infinite;
+        }
+
+        @keyframes caret { 50% { background: transparent; } }
+
+        /* Panel */
+        .panel {
+            border: 1px solid var(--bg-line);
+            background: rgba(7, 9, 12, 0.55);
+            backdrop-filter: blur(8px) saturate(110%);
+            -webkit-backdrop-filter: blur(8px) saturate(110%);
+            padding: 8px 0;
+            border-radius: 6px;
+            box-shadow:
+                inset 0 0 0 1px rgba(255,255,255,0.03),
+                0 8px 30px rgba(0,0,0,0.5);
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 18px;
+            border-bottom: 1px dashed var(--bg-line);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+        }
+
+        /* Project rows */
+        ul.projects {
+            list-style: none;
             margin: 0;
-            padding-left: 20px;
+            padding: 0;
         }
 
-        li {
-            margin: 10px;
+        ul.projects li {
+            padding: 18px 18px 20px;
+            border-bottom: 1px dashed var(--bg-line);
+            transition: background 0.2s ease;
         }
 
-        /* dark mode */
-        @media (prefers-color-scheme: dark) {
-            body {
-                color: #f8f8f8;
-                background-color: #004d29;
-                background-image: linear-gradient(to bottom right, #004f10, #003739, #333);
-            }
+        ul.projects li:last-child { border-bottom: none; }
+        ul.projects li:hover { background: rgba(255,255,255,0.02); }
 
-            a {
-                color: #f8f8f8;
-                border-bottom: 1px solid #f8f8f8;
-            }
+        .row-head {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 14px;
+            align-items: baseline;
+        }
 
-            a:hover {
-                color: #e53935;
-                border-bottom: 1px solid #e53935;
+        .idx {
+            color: var(--muted);
+            font-size: 12px;
+            min-width: 3ch;
+        }
+
+        .row-head a.title {
+            color: var(--fg);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px solid transparent;
+        }
+
+        .row-head a.title:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            text-shadow: 0 0 8px rgba(108, 240, 167, 0.45);
+        }
+
+        .desc {
+            color: var(--fg);
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin: 8px 0 0;
+            padding: 8px 12px 8px 14px;
+            border-left: 2px solid var(--accent);
+            background: rgba(108, 240, 167, 0.04);
+            border-radius: 0 4px 4px 0;
+            position: relative;
+        }
+
+        .desc::before {
+            content: "$";
+            color: var(--accent);
+            margin-right: 8px;
+            font-weight: 700;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+
+        .meta .k { color: var(--muted); }
+        .meta .v { color: var(--fg); }
+        .meta .sep { opacity: 0.4; }
+
+        /* Tags */
+        .tag {
+            font-size: 10px;
+            padding: 2px 8px;
+            border: 1px solid var(--muted);
+            color: var(--muted);
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            white-space: nowrap;
+            align-self: center;
+        }
+
+        .tag.new {
+            color: var(--bg);
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(108, 240, 167, 0.4);
+        }
+        .tag.ext { color: var(--accent-2); border-color: var(--accent-2); }
+        .tag.archive { color: var(--muted); border-color: var(--muted); opacity: 0.7; }
+
+        footer {
+            margin-top: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 16px;
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        footer a {
+            color: var(--fg);
+            text-decoration: none;
+            border-bottom: 1px solid var(--muted);
+        }
+
+        footer a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        @media (max-width: 540px) {
+            .wrap { padding: 28px 16px 60px; }
+            .row-head { grid-template-columns: auto 1fr; }
+            .row-head .tag {
+                grid-column: 2 / 3;
+                justify-self: start;
+                margin-top: 4px;
             }
         }
 
-
-        /* background animation */
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        @media (prefers-reduced-motion: reduce) {
+            .bg-gradient { animation: none; }
+            .topbar .dot, .tagline .caret { animation: none; }
         }
-
     </style>
 
     <script type="application/ld+json">
@@ -97,17 +342,145 @@
     </script>
 </head>
 <body>
-<h1>Dmytro Matsiuk projects links:</h1>
-<p>Hi there, links for my public projects:</p>
-<ul>
-    <li><a href="/DX-decoder/">DX-decoder for DX film code</a></li>
-    <li><a href="/ytrandi/">Random video from YouTube channel</a></li>
-    <li><a href="https://chrome.google.com/webstore/detail/reinvented-new-tab/mlbndllbhcdpjmalnmgljlfengkchdkk">Reinvented
-        New Tab for CHROME</a></li>
-    <li><a href="/fake_ua_tax_id/">Generate fake Ukrainian Taxpayer registration card number TRCN for test environments
-        only</a></li>
-</ul>
 
-<h3><a href="https://github.com/dmmat"> GITHUB Page </a></h3>
+<div class="bg-gradient" aria-hidden="true"></div>
+<div class="bg-mask" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-scan" aria-hidden="true"></div>
+
+<div class="wrap">
+    <div class="topbar">
+        <span><span class="dot"></span>online</span>
+        <span>v2.0 // 2026</span>
+    </div>
+
+    <h1>Dmytro Matsiuk</h1>
+    <p class="tagline">
+        &gt; small tools, side projects &amp; weekend experiments<span class="caret">_</span>
+    </p>
+
+    <section class="panel" aria-label="Projects">
+        <div class="panel-head">
+            <span>// projects</span>
+            <span>[ 06 ]</span>
+        </div>
+        <ul class="projects">
+
+            <li>
+                <div class="row-head">
+                    <span class="idx">01</span>
+                    <a class="title" href="https://github.com/dmmat/BadgeGEN">BadgeGEN</a>
+                    <span class="tag new">new</span>
+                </div>
+                <p class="desc">
+                    Browser-based generator for printable name badges, certificates and event passes. Drop in a CSV, pick a layout, export ready-to-print sheets — no signup, no backend.
+                </p>
+                <div class="meta">
+                    <span><span class="k">stack</span> <span class="v">TypeScript</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">type</span> <span class="v">web app</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">year</span> <span class="v">2025</span></span>
+                </div>
+            </li>
+
+            <li>
+                <div class="row-head">
+                    <span class="idx">02</span>
+                    <a class="title" href="https://github.com/dmmat/stamp">stamp</a>
+                    <span class="tag new">new</span>
+                </div>
+                <p class="desc">
+                    Генератор печаток для українських ФОП та компаній. Налаштовуєш текст і вигляд у браузері — отримуєш SVG, PNG або DXF готовий для друкарні чи лазерного гравера.
+                </p>
+                <div class="meta">
+                    <span><span class="k">stack</span> <span class="v">JavaScript / SVG</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">type</span> <span class="v">web app</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">year</span> <span class="v">2026</span></span>
+                </div>
+            </li>
+
+            <li>
+                <div class="row-head">
+                    <span class="idx">03</span>
+                    <a class="title" href="/DX-decoder/">DX-decoder</a>
+                    <span class="tag">web</span>
+                </div>
+                <p class="desc">
+                    Decode the DX-encoded barcode printed on 35mm film canisters. Paste the pattern, get back the ISO speed, exposures and latitude — handy for analog photography geeks.
+                </p>
+                <div class="meta">
+                    <span><span class="k">stack</span> <span class="v">HTML / JS</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">type</span> <span class="v">tool</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">year</span> <span class="v">2023</span></span>
+                </div>
+            </li>
+
+            <li>
+                <div class="row-head">
+                    <span class="idx">04</span>
+                    <a class="title" href="/ytrandi/">ytrandi</a>
+                    <span class="tag">web</span>
+                </div>
+                <p class="desc">
+                    Pick a truly random video from any YouTube channel. Useful for rediscovering archives or jumping past the algorithm’s recommendations.
+                </p>
+                <div class="meta">
+                    <span><span class="k">stack</span> <span class="v">JavaScript</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">type</span> <span class="v">tool</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">year</span> <span class="v">2019</span></span>
+                </div>
+            </li>
+
+            <li>
+                <div class="row-head">
+                    <span class="idx">05</span>
+                    <a class="title" href="https://chrome.google.com/webstore/detail/reinvented-new-tab/mlbndllbhcdpjmalnmgljlfengkchdkk">Reinvented New Tab</a>
+                    <span class="tag ext">chrome</span>
+                </div>
+                <p class="desc">
+                    A minimal new-tab page for Chrome — replaces the default screen with something quiet, distraction-free and fast. Available in the Chrome Web Store.
+                </p>
+                <div class="meta">
+                    <span><span class="k">stack</span> <span class="v">JavaScript</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">type</span> <span class="v">extension</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">year</span> <span class="v">2018</span></span>
+                </div>
+            </li>
+
+            <li>
+                <div class="row-head">
+                    <span class="idx">06</span>
+                    <a class="title" href="/fake_ua_tax_id/">fake_ua_tax_id</a>
+                    <span class="tag">web</span>
+                </div>
+                <p class="desc">
+                    Generate syntactically valid (but fake) Ukrainian Taxpayer Registration Card Numbers — TRCN / ІПН — for filling test environments and QA fixtures. Not for real-world use.
+                </p>
+                <div class="meta">
+                    <span><span class="k">stack</span> <span class="v">HTML / JS</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">type</span> <span class="v">tool</span></span>
+                    <span class="sep">·</span>
+                    <span><span class="k">year</span> <span class="v">2019</span></span>
+                </div>
+            </li>
+
+        </ul>
+    </section>
+
+    <footer>
+        <span>&copy; Dmytro Matsiuk</span>
+        <span><a href="https://github.com/dmmat">github.com/dmmat</a></span>
+    </footer>
+</div>
 </body>
 </html>
