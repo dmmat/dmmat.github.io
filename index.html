@@ -161,13 +161,12 @@
 
         .tagline .caret {
             display: inline-block;
-            width: 0.6ch;
-            background: var(--accent);
-            color: var(--accent);
             margin-left: 2px;
+            color: var(--accent);
+            text-shadow: 0 0 8px rgba(108, 240, 167, 0.55);
             animation: caret 1s steps(2) infinite;
         }
-        @keyframes caret { 50% { background: transparent; } }
+        @keyframes caret { 50% { opacity: 0; } }
 
         /* === Panel === */
         .panel {
@@ -468,7 +467,6 @@
                 <div class="row-head">
                     <span class="idx">01</span>
                     <span class="title">BadgeGEN</span>
-                    <span class="tag new">new</span>
                 </div>
                 <p class="desc">
                     Browser-based generator for printable name badges, certificates and event passes. Drop in a CSV, pick a layout, export ready-to-print sheets — no signup, no backend.
@@ -496,7 +494,6 @@
                 <div class="row-head">
                     <span class="idx">02</span>
                     <span class="title">stamp</span>
-                    <span class="tag new">new</span>
                 </div>
                 <p class="desc">
                     Stamp generator for Ukrainian sole proprietors and companies. Configure the text and look in the browser, then export an SVG, PNG or DXF ready for a print shop or a laser engraver.
