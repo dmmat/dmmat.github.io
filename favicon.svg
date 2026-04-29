@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" shape-rendering="crispEdges">
+    <defs>
+        <filter id="g" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="0.35" result="b"/>
+            <feMerge>
+                <feMergeNode in="b"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <rect width="10" height="10" fill="#0b0f12"/>
+    <g filter="url(#g)" fill="#6cf0a7">
+        <rect x="7" y="1" width="1" height="8"/>
+        <rect x="3" y="4" width="4" height="1"/>
+        <rect x="2" y="5" width="1" height="3"/>
+        <rect x="3" y="8" width="4" height="1"/>
+        <animate attributeName="opacity" values="0.85;1;0.85" dur="2.4s" repeatCount="indefinite"/>
+    </g>
+</svg>
