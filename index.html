@@ -44,10 +44,17 @@
         }
 
         /* === Animated gradient background === */
-        .bg-gradient {
+        .bg-tilt {
             position: fixed;
             inset: -15%;
             z-index: 0;
+            transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0);
+            transition: transform 0.18s ease-out;
+            will-change: transform;
+        }
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
             background:
                 radial-gradient(38% 32% at 18% 22%, #ff5c8a 0%, transparent 60%),
                 radial-gradient(45% 38% at 82% 18%, #7aa6ff 0%, transparent 60%),
@@ -369,8 +376,35 @@
 
         @media (prefers-reduced-motion: reduce) {
             .bg-gradient { animation: none; }
+            .bg-tilt { transition: none; }
             .topbar .dot, .tagline .caret { animation: none; }
         }
+
+        /* === Tilt permission prompt (iOS only) === */
+        .tilt-prompt {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 10;
+            font-family: inherit;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            padding: 8px 12px;
+            color: var(--bg);
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 3px;
+            cursor: pointer;
+            box-shadow: 0 0 14px rgba(108, 240, 167, 0.5);
+            opacity: 0;
+            transform: translateY(8px);
+            animation: tilt-in 0.4s ease-out forwards;
+        }
+        @keyframes tilt-in {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tilt-prompt:active { transform: translateY(1px); }
     </style>
 
     <script type="application/ld+json">
@@ -405,7 +439,9 @@
     </defs>
 </svg>
 
-<div class="bg-gradient" aria-hidden="true"></div>
+<div class="bg-tilt" aria-hidden="true">
+    <div class="bg-gradient"></div>
+</div>
 <div class="bg-mask" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
 <div class="bg-scan" aria-hidden="true"></div>
@@ -603,5 +639,75 @@
         <span><a href="https://github.com/dmmat">github.com/dmmat</a></span>
     </footer>
 </div>
+
+<script>
+(function () {
+    var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!coarse || reduced) return;
+    if (typeof DeviceOrientationEvent === 'undefined') return;
+
+    var tilt = document.querySelector('.bg-tilt');
+    if (!tilt) return;
+
+    var MAX_OFFSET = 36;     // how far the gradient can shift, px
+    var SENSITIVITY = 28;    // tilt degrees that map to MAX_OFFSET
+    var SMOOTHING = 0.08;
+
+    var targetX = 0, targetY = 0, currX = 0, currY = 0;
+    var baselineB = null, baselineG = null;
+    var rafId = null;
+
+    function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+    function onOrient(e) {
+        if (e.beta == null || e.gamma == null) return;
+        if (baselineB === null) { baselineB = e.beta; baselineG = e.gamma; }
+        var dg = e.gamma - baselineG;
+        var db = e.beta - baselineB;
+        targetX = clamp(dg / SENSITIVITY, -1, 1) * MAX_OFFSET;
+        targetY = clamp(db / SENSITIVITY, -1, 1) * MAX_OFFSET;
+    }
+
+    function loop() {
+        currX += (targetX - currX) * SMOOTHING;
+        currY += (targetY - currY) * SMOOTHING;
+        tilt.style.setProperty('--tx', currX.toFixed(2) + 'px');
+        tilt.style.setProperty('--ty', currY.toFixed(2) + 'px');
+        rafId = requestAnimationFrame(loop);
+    }
+
+    function start() {
+        window.addEventListener('deviceorientation', onOrient, { passive: true });
+        if (!rafId) rafId = requestAnimationFrame(loop);
+    }
+
+    // iOS 13+ requires an explicit gesture-driven permission
+    var needsPermission = typeof DeviceOrientationEvent.requestPermission === 'function';
+
+    if (!needsPermission) {
+        start();
+        return;
+    }
+
+    var btn = document.createElement('button');
+    btn.className = 'tilt-prompt';
+    btn.type = 'button';
+    btn.textContent = '◉ enable tilt';
+    btn.addEventListener('click', function () {
+        DeviceOrientationEvent.requestPermission()
+            .then(function (state) {
+                if (state === 'granted') {
+                    start();
+                    btn.remove();
+                } else {
+                    btn.textContent = '◉ tilt blocked';
+                }
+            })
+            .catch(function () { btn.remove(); });
+    });
+    document.body.appendChild(btn);
+})();
+</script>
 </body>
 </html>
