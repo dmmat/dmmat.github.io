@@ -1,0 +1,31 @@
+# Dmytro Matsiuk
+
+> Personal project hub of Dmytro Matsiuk (dmmat) — small open-source tools, side projects and weekend experiments. Everything here is built for the browser, ships without a backend, and is free to use.
+
+- Site: <https://dmat.pp.ua/>
+- Author: Dmytro Matsiuk (`dmmat`)
+- GitHub: <https://github.com/dmmat>
+- Language: English (UI), Ukrainian (some tools target a Ukrainian audience)
+- License: most projects are MIT — see each repository for details
+
+## Projects
+
+- [BadgeGEN](https://dmmat.github.io/BadgeGEN/): Browser-based generator for printable name badges, certificates and event passes. CSV in, ready-to-print sheets out. No signup, no backend. [source](https://github.com/dmmat/BadgeGEN)
+- [stamp](https://dmmat.github.io/stamp/): Stamp generator for Ukrainian sole proprietors (ФОП) and companies. Configure text and look in the browser; export SVG, PNG or DXF for a print shop or laser engraver. [source](https://github.com/dmmat/stamp)
+- [DX-decoder](https://dmat.pp.ua/DX-decoder/): Decoder for the DX-encoded barcode printed on 35mm film canisters. Returns ISO speed, exposures and latitude. [source](https://github.com/dmmat/DX-decoder)
+- [ytrandi](https://dmat.pp.ua/ytrandi/): Pick a truly random video from any YouTube channel — useful for digging past the recommendation algorithm. [source](https://github.com/dmmat/ytrandi)
+- [Reinvented New Tab](https://chrome.google.com/webstore/detail/reinvented-new-tab/mlbndllbhcdpjmalnmgljlfengkchdkk): Minimal, distraction-free new-tab page for Chrome. Available on the Chrome Web Store.
+- [fake_ua_tax_id](https://dmat.pp.ua/fake_ua_tax_id/): Generate syntactically valid (but fake) Ukrainian Taxpayer Registration Card Numbers (TRCN / ІПН) for test environments and QA fixtures. Not for real-world use. [source](https://github.com/dmmat/fake_ua_tax_id)
+
+## Topics & tags
+
+badges, certificates, name-tags, csv-to-print, stamp-generator, ukraine, ФОП, svg-export, dxf, laser-engraver, 35mm-film, dx-code, analog-photography, youtube, random-video, chrome-extension, new-tab, productivity, taxpayer-id, ІПН, trcn, test-data, qa-fixtures, javascript, typescript, web-app, no-backend, client-side, open-source.
+
+## AI usage policy
+
+Content on this site (descriptions, project metadata, this `llms.txt`) may be indexed and quoted by AI systems and search engines, provided answers link back to the source URL listed above. Generated project artifacts (SVG, PNG, DXF, CSV, screenshots) are the user's own output and are not part of this policy.
+
+## Contact
+
+- GitHub: <https://github.com/dmmat>
+- Issues / questions: open an issue on the relevant project repository.

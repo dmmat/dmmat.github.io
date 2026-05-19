@@ -10,10 +10,14 @@
     <meta name="description"
           content="Public projects by Dmytro Matsiuk: BadgeGEN badge generator, Stamp generator for Ukraine, DX film code decoder, random YouTube video picker, Reinvented New Tab Chrome extension, and a fake Ukrainian Taxpayer (TRCN) ID generator for test environments.">
     <meta name="keywords"
-          content="Dmytro Matsiuk, dmmat, BadgeGEN, stamp generator, Ukraine stamp, DX decoder, random video, YouTube, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, TRCN, test environment">
+          content="Dmytro Matsiuk, dmmat, BadgeGEN, badge generator, name badges, stamp generator, Ukraine stamp, ФОП печатка, SVG DXF export, DX decoder, 35mm film, analog photography, random YouTube video, ytrandi, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, TRCN, ІПН, test environment, QA fixtures, web tools, client-side, no backend, open source">
     <meta name="author" content="Dmytro Matsiuk">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1">
     <link rel="canonical" href="https://dmat.pp.ua/">
+
+    <!-- AI / LLM discoverability -->
+    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -492,6 +496,21 @@
             box-shadow: 0 0 12px rgba(108, 240, 167, 0.4);
         }
 
+        /* === Tag row under each project description === */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .tags .tag {
+            transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+        }
+        .tags .tag:hover {
+            color: var(--fg);
+            border-color: var(--accent-4);
+        }
+
         footer {
             margin-top: 32px;
             display: flex;
@@ -610,7 +629,10 @@
                             "operatingSystem": "Any",
                             "url": "https://dmmat.github.io/BadgeGEN/",
                             "codeRepository": "https://github.com/dmmat/BadgeGEN",
-                            "description": "Browser-based generator for printable name badges, certificates and event passes."
+                            "description": "Browser-based generator for printable name badges, certificates and event passes.",
+                            "keywords": "badges, name tags, certificates, events, csv to print, printable, web app, typescript, client-side",
+                            "programmingLanguage": "TypeScript",
+                            "author": { "@id": "https://dmat.pp.ua/#person" }
                         }
                     },
                     {
@@ -623,7 +645,10 @@
                             "operatingSystem": "Any",
                             "url": "https://dmmat.github.io/stamp/",
                             "codeRepository": "https://github.com/dmmat/stamp",
-                            "description": "Stamp generator for Ukrainian sole proprietors and companies. Exports SVG, PNG and DXF."
+                            "description": "Stamp generator for Ukrainian sole proprietors and companies. Exports SVG, PNG and DXF.",
+                            "keywords": "stamp, печатка, Ukraine, ФОП, sole proprietor, SVG, PNG, DXF, laser engraver, generator",
+                            "programmingLanguage": "JavaScript",
+                            "author": { "@id": "https://dmat.pp.ua/#person" }
                         }
                     },
                     {
@@ -636,7 +661,10 @@
                             "operatingSystem": "Any",
                             "url": "https://dmat.pp.ua/DX-decoder/",
                             "codeRepository": "https://github.com/dmmat/DX-decoder",
-                            "description": "Decoder for the DX-encoded barcode printed on 35mm film canisters."
+                            "description": "Decoder for the DX-encoded barcode printed on 35mm film canisters.",
+                            "keywords": "DX code, DX barcode, 35mm film, analog photography, ISO speed, exposures, latitude, decoder",
+                            "programmingLanguage": "JavaScript",
+                            "author": { "@id": "https://dmat.pp.ua/#person" }
                         }
                     },
                     {
@@ -649,7 +677,10 @@
                             "operatingSystem": "Any",
                             "url": "https://dmat.pp.ua/ytrandi/",
                             "codeRepository": "https://github.com/dmmat/ytrandi",
-                            "description": "Pick a truly random video from any YouTube channel."
+                            "description": "Pick a truly random video from any YouTube channel.",
+                            "keywords": "YouTube, random video, channel, shuffle, discovery, tool",
+                            "programmingLanguage": "JavaScript",
+                            "author": { "@id": "https://dmat.pp.ua/#person" }
                         }
                     },
                     {
@@ -661,7 +692,10 @@
                             "applicationCategory": "BrowserApplication",
                             "operatingSystem": "Chrome",
                             "url": "https://chrome.google.com/webstore/detail/reinvented-new-tab/mlbndllbhcdpjmalnmgljlfengkchdkk",
-                            "description": "A minimal, distraction-free new-tab page for Chrome."
+                            "description": "A minimal, distraction-free new-tab page for Chrome.",
+                            "keywords": "Chrome extension, new tab, minimal, distraction-free, productivity",
+                            "programmingLanguage": "JavaScript",
+                            "author": { "@id": "https://dmat.pp.ua/#person" }
                         }
                     },
                     {
@@ -674,7 +708,10 @@
                             "operatingSystem": "Any",
                             "url": "https://dmat.pp.ua/fake_ua_tax_id/",
                             "codeRepository": "https://github.com/dmmat/fake_ua_tax_id",
-                            "description": "Generate fake Ukrainian Taxpayer Registration Card Numbers (TRCN) for test environments."
+                            "description": "Generate fake Ukrainian Taxpayer Registration Card Numbers (TRCN) for test environments.",
+                            "keywords": "Ukraine, taxpayer ID, TRCN, ІПН, test data, QA fixtures, fake data, generator",
+                            "programmingLanguage": "JavaScript",
+                            "author": { "@id": "https://dmat.pp.ua/#person" }
                         }
                     }
                 ]
@@ -737,6 +774,13 @@
                 <p class="desc">
                     Browser-based generator for printable name badges, certificates and event passes. Drop in a CSV, pick a layout, export ready-to-print sheets — no signup, no backend.
                 </p>
+                <div class="tags" aria-label="Tags">
+                    <span class="tag">badges</span>
+                    <span class="tag">certificates</span>
+                    <span class="tag">csv</span>
+                    <span class="tag">print</span>
+                    <span class="tag">typescript</span>
+                </div>
                 <div class="row-foot">
                     <div class="meta">
                         <span><span class="v">TypeScript</span></span>
@@ -764,6 +808,13 @@
                 <p class="desc">
                     Stamp generator for Ukrainian sole proprietors and companies. Configure the text and look in the browser, then export an SVG, PNG or DXF ready for a print shop or a laser engraver.
                 </p>
+                <div class="tags" aria-label="Tags">
+                    <span class="tag">ukraine</span>
+                    <span class="tag">ФОП</span>
+                    <span class="tag">svg</span>
+                    <span class="tag">dxf</span>
+                    <span class="tag">laser</span>
+                </div>
                 <div class="row-foot">
                     <div class="meta">
                         <span><span class="v">JavaScript / SVG</span></span>
@@ -791,6 +842,13 @@
                 <p class="desc">
                     Decode the DX-encoded barcode printed on 35mm film canisters. Paste the pattern, get back the ISO speed, exposures and latitude — handy for analog photography geeks.
                 </p>
+                <div class="tags" aria-label="Tags">
+                    <span class="tag">35mm</span>
+                    <span class="tag">film</span>
+                    <span class="tag">analog</span>
+                    <span class="tag">dx-code</span>
+                    <span class="tag">decoder</span>
+                </div>
                 <div class="row-foot">
                     <div class="meta">
                         <span><span class="v">HTML / JS</span></span>
@@ -818,6 +876,12 @@
                 <p class="desc">
                     Pick a truly random video from any YouTube channel. Useful for rediscovering archives or jumping past the algorithm’s recommendations.
                 </p>
+                <div class="tags" aria-label="Tags">
+                    <span class="tag">youtube</span>
+                    <span class="tag">random</span>
+                    <span class="tag">video</span>
+                    <span class="tag">discovery</span>
+                </div>
                 <div class="row-foot">
                     <div class="meta">
                         <span><span class="v">JavaScript</span></span>
@@ -845,6 +909,13 @@
                 <p class="desc">
                     A minimal new-tab page for Chrome — replaces the default screen with something quiet, distraction-free and fast. Available in the Chrome Web Store.
                 </p>
+                <div class="tags" aria-label="Tags">
+                    <span class="tag">chrome</span>
+                    <span class="tag">extension</span>
+                    <span class="tag">new-tab</span>
+                    <span class="tag">minimal</span>
+                    <span class="tag">productivity</span>
+                </div>
                 <div class="row-foot">
                     <div class="meta">
                         <span><span class="v">JavaScript</span></span>
@@ -869,6 +940,13 @@
                 <p class="desc">
                     Generate syntactically valid (but fake) Ukrainian Taxpayer Registration Card Numbers — TRCN / ІПН — for filling test environments and QA fixtures. Not for real-world use.
                 </p>
+                <div class="tags" aria-label="Tags">
+                    <span class="tag">ukraine</span>
+                    <span class="tag">ІПН</span>
+                    <span class="tag">trcn</span>
+                    <span class="tag">test-data</span>
+                    <span class="tag">qa</span>
+                </div>
                 <div class="row-foot">
                     <div class="meta">
                         <span><span class="v">HTML / JS</span></span>
