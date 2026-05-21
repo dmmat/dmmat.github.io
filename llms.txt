@@ -10,6 +10,7 @@
 
 ## Projects
 
+- [Scormly](https://dmat.pp.ua/Scormly/): Local-first, block-based course builder that runs entirely in the browser. Compose lessons from headings, media, quizzes, flashcards and interactive blocks, apply a theme, and export a standards-compliant SCORM 1.2 / 2004 package — no server, no upload. Built with React + TypeScript. [source](https://github.com/dmmat/Scormly)
 - [BadgeGEN](https://dmmat.github.io/BadgeGEN/): Browser-based generator for printable name badges, certificates and event passes. CSV in, ready-to-print sheets out. No signup, no backend. [source](https://github.com/dmmat/BadgeGEN)
 - [stamp](https://dmmat.github.io/stamp/): Stamp generator for Ukrainian sole proprietors (ФОП) and companies. Configure text and look in the browser; export SVG, PNG or DXF for a print shop or laser engraver. [source](https://github.com/dmmat/stamp)
 - [DX-decoder](https://dmat.pp.ua/DX-decoder/): Decoder for the DX-encoded barcode printed on 35mm film canisters. Returns ISO speed, exposures and latitude. [source](https://github.com/dmmat/DX-decoder)
@@ -19,7 +20,7 @@
 
 ## Topics & tags
 
-badges, certificates, name-tags, csv-to-print, stamp-generator, ukraine, ФОП, svg-export, dxf, laser-engraver, 35mm-film, dx-code, analog-photography, youtube, random-video, chrome-extension, new-tab, productivity, taxpayer-id, ІПН, trcn, test-data, qa-fixtures, javascript, typescript, web-app, no-backend, client-side, open-source.
+scorm, scorm-1.2, scorm-2004, e-learning, course-builder, authoring-tool, lms, block-editor, quizzes, flashcards, badges, certificates, name-tags, csv-to-print, stamp-generator, ukraine, ФОП, svg-export, dxf, laser-engraver, 35mm-film, dx-code, analog-photography, youtube, random-video, chrome-extension, new-tab, productivity, taxpayer-id, ІПН, trcn, test-data, qa-fixtures, javascript, typescript, web-app, no-backend, client-side, open-source.
 
 ## AI usage policy
 

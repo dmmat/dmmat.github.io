@@ -8,9 +8,9 @@
 
     <title>Dmytro Matsiuk — projects, tools & weekend experiments</title>
     <meta name="description"
-          content="Public projects by Dmytro Matsiuk: BadgeGEN badge generator, Stamp generator for Ukraine, DX film code decoder, random YouTube video picker, Reinvented New Tab Chrome extension, and a fake Ukrainian Taxpayer (TRCN) ID generator for test environments.">
+          content="Public projects by Dmytro Matsiuk: Scormly block-based SCORM course builder, BadgeGEN badge generator, Stamp generator for Ukraine, DX film code decoder, random YouTube video picker, Reinvented New Tab Chrome extension, and a fake Ukrainian Taxpayer (TRCN) ID generator for test environments.">
     <meta name="keywords"
-          content="Dmytro Matsiuk, dmmat, BadgeGEN, badge generator, name badges, stamp generator, Ukraine stamp, ФОП печатка, SVG DXF export, DX decoder, 35mm film, analog photography, random YouTube video, ytrandi, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, TRCN, ІПН, test environment, QA fixtures, web tools, client-side, no backend, open source">
+          content="Dmytro Matsiuk, dmmat, Scormly, SCORM course builder, e-learning authoring, SCORM 1.2, SCORM 2004, block editor, BadgeGEN, badge generator, name badges, stamp generator, Ukraine stamp, ФОП печатка, SVG DXF export, DX decoder, 35mm film, analog photography, random YouTube video, ytrandi, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, TRCN, ІПН, test environment, QA fixtures, web tools, client-side, no backend, open source">
     <meta name="author" content="Dmytro Matsiuk">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -617,11 +617,28 @@
                 "@id": "https://dmat.pp.ua/#projects",
                 "name": "Projects by Dmytro Matsiuk",
                 "itemListOrder": "https://schema.org/ItemListOrderDescending",
-                "numberOfItems": 6,
+                "numberOfItems": 7,
                 "itemListElement": [
                     {
                         "@type": "ListItem",
                         "position": 1,
+                        "item": {
+                            "@type": "SoftwareApplication",
+                            "name": "Scormly",
+                            "applicationCategory": "WebApplication",
+                            "applicationSubCategory": "Course authoring / e-learning",
+                            "operatingSystem": "Any",
+                            "url": "https://dmat.pp.ua/Scormly/",
+                            "codeRepository": "https://github.com/dmmat/Scormly",
+                            "description": "Local-first, block-based course builder that runs entirely in the browser and exports SCORM 1.2 / 2004 packages.",
+                            "keywords": "SCORM, SCORM 1.2, SCORM 2004, course builder, e-learning, authoring, LMS, block editor, quizzes, flashcards, client-side, local-first",
+                            "programmingLanguage": "TypeScript",
+                            "author": { "@id": "https://dmat.pp.ua/#person" }
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "BadgeGEN",
@@ -637,7 +654,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 2,
+                        "position": 3,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "stamp",
@@ -653,7 +670,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 3,
+                        "position": 4,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "DX-decoder",
@@ -669,7 +686,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 4,
+                        "position": 5,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "ytrandi",
@@ -685,7 +702,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 5,
+                        "position": 6,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "Reinvented New Tab",
@@ -700,7 +717,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 6,
+                        "position": 7,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "fake_ua_tax_id",
@@ -762,13 +779,48 @@
     <section class="panel" aria-label="Projects">
         <div class="panel-head">
             <span>// projects</span>
-            <span>[ 06 ]</span>
+            <span>[ 07 ]</span>
         </div>
         <ul class="projects">
 
             <li>
                 <div class="row-head">
                     <span class="idx">01</span>
+                    <span class="title">Scormly</span>
+                    <span class="tag new">new</span>
+                </div>
+                <p class="desc">
+                    Block-based course builder that runs entirely in your browser. Compose lessons from headings, media, quizzes, flashcards and interactive blocks, apply a theme, then export a standards-compliant SCORM 1.2 / 2004 package — all client-side, no server, no upload.
+                </p>
+                <div class="tags" aria-label="Tags">
+                    <span class="tag">scorm</span>
+                    <span class="tag">e-learning</span>
+                    <span class="tag">course-builder</span>
+                    <span class="tag">local-first</span>
+                    <span class="tag">typescript</span>
+                </div>
+                <div class="row-foot">
+                    <div class="meta">
+                        <span><span class="v">TypeScript / React</span></span>
+                        <span class="sep">·</span>
+                        <span>web app</span>
+                        <span class="sep">·</span>
+                        <span>2026</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-web" href="https://dmat.pp.ua/Scormly/" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-web"/></svg> open
+                        </a>
+                        <a class="btn btn-src" href="https://github.com/dmmat/Scormly" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-src"/></svg> source
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="row-head">
+                    <span class="idx">02</span>
                     <span class="title">BadgeGEN</span>
                 </div>
                 <p class="desc">
@@ -802,7 +854,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">02</span>
+                    <span class="idx">03</span>
                     <span class="title">stamp</span>
                 </div>
                 <p class="desc">
@@ -836,7 +888,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">03</span>
+                    <span class="idx">04</span>
                     <span class="title">DX-decoder</span>
                 </div>
                 <p class="desc">
@@ -870,7 +922,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">04</span>
+                    <span class="idx">05</span>
                     <span class="title">ytrandi</span>
                 </div>
                 <p class="desc">
@@ -903,7 +955,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">05</span>
+                    <span class="idx">06</span>
                     <span class="title">Reinvented New Tab</span>
                 </div>
                 <p class="desc">
@@ -934,7 +986,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">06</span>
+                    <span class="idx">07</span>
                     <span class="title">fake_ua_tax_id</span>
                 </div>
                 <p class="desc">
