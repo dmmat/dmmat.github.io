@@ -8,9 +8,9 @@
 
     <title>Dmytro Matsiuk — projects, tools & weekend experiments</title>
     <meta name="description"
-          content="Public projects by Dmytro Matsiuk: Scormly block-based SCORM course builder, BadgeGEN badge generator, Stamp generator for Ukraine, DX film code decoder, random YouTube video picker, Reinvented New Tab Chrome extension, and a fake Ukrainian Taxpayer (TRCN) ID generator for test environments.">
+          content="Public projects by Dmytro Matsiuk: Kalabanya poetic incremental puddle game, Scormly block-based SCORM course builder, BadgeGEN badge generator, Stamp generator for Ukraine, DX film code decoder, random YouTube video picker, Reinvented New Tab Chrome extension, and a fake Ukrainian Taxpayer (TRCN) ID generator for test environments.">
     <meta name="keywords"
-          content="Dmytro Matsiuk, dmmat, Scormly, SCORM course builder, e-learning authoring, SCORM 1.2, SCORM 2004, block editor, BadgeGEN, badge generator, name badges, stamp generator, Ukraine stamp, ФОП печатка, SVG DXF export, DX decoder, 35mm film, analog photography, random YouTube video, ytrandi, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, TRCN, ІПН, test environment, QA fixtures, web tools, client-side, no backend, open source">
+          content="Dmytro Matsiuk, dmmat, Kalabanya, Калабаня, калюжа, incremental game, roguelike, idle game, Ukrainian game, PWA game, Scormly, SCORM course builder, e-learning authoring, SCORM 1.2, SCORM 2004, block editor, BadgeGEN, badge generator, name badges, stamp generator, Ukraine stamp, ФОП печатка, SVG DXF export, DX decoder, 35mm film, analog photography, random YouTube video, ytrandi, Reinvented New Tab, Chrome extension, fake Taxpayer registration card number, TRCN, ІПН, test environment, QA fixtures, web tools, client-side, no backend, open source">
     <meta name="author" content="Dmytro Matsiuk">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -617,11 +617,29 @@
                 "@id": "https://dmat.pp.ua/#projects",
                 "name": "Projects by Dmytro Matsiuk",
                 "itemListOrder": "https://schema.org/ItemListOrderDescending",
-                "numberOfItems": 7,
+                "numberOfItems": 8,
                 "itemListElement": [
                     {
                         "@type": "ListItem",
                         "position": 1,
+                        "item": {
+                            "@type": "VideoGame",
+                            "name": "Калабаня",
+                            "applicationCategory": "Game",
+                            "applicationSubCategory": "Incremental / roguelike",
+                            "operatingSystem": "Any",
+                            "url": "https://dmat.pp.ua/kalabanya/",
+                            "codeRepository": "https://github.com/dmmat/kalabanya",
+                            "description": "Поетична incremental-гра українською: ти — калабаня, що повільно випаровується на сонці. Крути небесний слот-автомат прогнозу погоди й вирішуй, чи ризикнути ще одним спекотним днем.",
+                            "keywords": "гра, game, incremental, roguelike, idle, puddle, калабаня, калюжа, ukrainian, PWA, javascript, vite",
+                            "inLanguage": "uk",
+                            "programmingLanguage": "JavaScript",
+                            "author": { "@id": "https://dmat.pp.ua/#person" }
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "Scormly",
@@ -638,7 +656,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 2,
+                        "position": 3,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "BadgeGEN",
@@ -654,7 +672,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 3,
+                        "position": 4,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "stamp",
@@ -670,7 +688,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 4,
+                        "position": 5,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "DX-decoder",
@@ -686,7 +704,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 5,
+                        "position": 6,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "ytrandi",
@@ -702,7 +720,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 6,
+                        "position": 7,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "Reinvented New Tab",
@@ -717,7 +735,7 @@
                     },
                     {
                         "@type": "ListItem",
-                        "position": 7,
+                        "position": 8,
                         "item": {
                             "@type": "SoftwareApplication",
                             "name": "fake_ua_tax_id",
@@ -779,15 +797,49 @@
     <section class="panel" aria-label="Projects">
         <div class="panel-head">
             <span>// projects</span>
-            <span>[ 07 ]</span>
+            <span>[ 08 ]</span>
         </div>
         <ul class="projects">
 
             <li>
                 <div class="row-head">
                     <span class="idx">01</span>
-                    <span class="title">Scormly</span>
+                    <span class="title">Калабаня</span>
                     <span class="tag new">new</span>
+                </div>
+                <p class="desc">
+                    Поетична incremental-гра українською: ти — калабаня, що повільно випаровується на сонці. Щодня крутиш небесний слот-автомат прогнозу погоди й вирішуєш — ризикнути ще одним спекотним днем чи забрати свою Сутність і завершити забіг. Зміна дня й ночі, досягнення, випадкові події, звук і офлайн-режим (PWA).
+                </p>
+                <div class="tags" aria-label="Tags">
+                    <span class="tag">гра</span>
+                    <span class="tag">incremental</span>
+                    <span class="tag">roguelike</span>
+                    <span class="tag">ukrainian</span>
+                    <span class="tag">pwa</span>
+                </div>
+                <div class="row-foot">
+                    <div class="meta">
+                        <span><span class="v">JavaScript / Vite</span></span>
+                        <span class="sep">·</span>
+                        <span>game</span>
+                        <span class="sep">·</span>
+                        <span>2026</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-web" href="https://dmat.pp.ua/kalabanya/" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-web"/></svg> play
+                        </a>
+                        <a class="btn btn-src" href="https://github.com/dmmat/kalabanya" target="_blank" rel="noopener">
+                            <svg class="ico"><use href="#i-src"/></svg> source
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="row-head">
+                    <span class="idx">02</span>
+                    <span class="title">Scormly</span>
                 </div>
                 <p class="desc">
                     Block-based course builder that runs entirely in your browser. Compose lessons from headings, media, quizzes, flashcards and interactive blocks, apply a theme, then export a standards-compliant SCORM 1.2 / 2004 package — all client-side, no server, no upload.
@@ -820,7 +872,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">02</span>
+                    <span class="idx">03</span>
                     <span class="title">BadgeGEN</span>
                 </div>
                 <p class="desc">
@@ -854,7 +906,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">03</span>
+                    <span class="idx">04</span>
                     <span class="title">stamp</span>
                 </div>
                 <p class="desc">
@@ -888,7 +940,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">04</span>
+                    <span class="idx">05</span>
                     <span class="title">DX-decoder</span>
                 </div>
                 <p class="desc">
@@ -922,7 +974,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">05</span>
+                    <span class="idx">06</span>
                     <span class="title">ytrandi</span>
                 </div>
                 <p class="desc">
@@ -955,7 +1007,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">06</span>
+                    <span class="idx">07</span>
                     <span class="title">Reinvented New Tab</span>
                 </div>
                 <p class="desc">
@@ -986,7 +1038,7 @@
 
             <li>
                 <div class="row-head">
-                    <span class="idx">07</span>
+                    <span class="idx">08</span>
                     <span class="title">fake_ua_tax_id</span>
                 </div>
                 <p class="desc">
