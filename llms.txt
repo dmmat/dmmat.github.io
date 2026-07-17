@@ -13,6 +13,7 @@
 - [Калабаня (Kalabanya)](https://dmat.pp.ua/kalabanya/): Poetic, Ukrainian-language incremental/roguelike game where you play as a puddle (калабаня) slowly evaporating in the sun. Each day you spin a "sky slot machine" weather forecast and decide whether to risk another hot day or withdraw your Essence and end the run. Features day/night cycles, achievements, random events, WebAudio sound and offline play (PWA). Built with JavaScript + Vite. [source](https://github.com/dmmat/kalabanya)
 - [Scormly](https://dmat.pp.ua/Scormly/): Local-first, block-based course builder that runs entirely in the browser. Compose lessons from headings, media, quizzes, flashcards and interactive blocks, apply a theme, and export a standards-compliant SCORM 1.2 / 2004 package — no server, no upload. Built with React + TypeScript. [source](https://github.com/dmmat/Scormly)
 - [BadgeGEN](https://dmat.pp.ua/BadgeGEN/): Browser-based generator for printable name badges, certificates and event passes. CSV in, ready-to-print sheets out. No signup, no backend. [source](https://github.com/dmmat/BadgeGEN)
+- [car.pp.ua](https://car.pp.ua/): QR-code generator for cars. A driver generates a code, prints it and puts it under the windshield so others can contact them anonymously — in case of an accident or when the car is blocking the way — without exposing a phone number. Ukrainian-audience tool.
 - [stamp](https://dmat.pp.ua/stamp/): Stamp generator for Ukrainian sole proprietors (ФОП) and companies. Configure text and look in the browser; export SVG, PNG or DXF for a print shop or laser engraver. [source](https://github.com/dmmat/stamp)
 - [DX-decoder](https://dmat.pp.ua/DX-decoder/): Decoder for the DX-encoded barcode printed on 35mm film canisters. Returns ISO speed, exposures and latitude. [source](https://github.com/dmmat/DX-decoder)
 - [ytrandi](https://dmat.pp.ua/ytrandi/): Pick a truly random video from any YouTube channel — useful for digging past the recommendation algorithm. [source](https://github.com/dmmat/ytrandi)
@@ -21,7 +22,7 @@
 
 ## Topics & tags
 
-game, incremental-game, roguelike, idle-game, ukrainian-game, pwa, калабаня, калюжа, scorm, scorm-1.2, scorm-2004, e-learning, course-builder, authoring-tool, lms, block-editor, quizzes, flashcards, badges, certificates, name-tags, csv-to-print, stamp-generator, ukraine, ФОП, svg-export, dxf, laser-engraver, 35mm-film, dx-code, analog-photography, youtube, random-video, chrome-extension, new-tab, productivity, taxpayer-id, ІПН, trcn, test-data, qa-fixtures, javascript, typescript, web-app, no-backend, client-side, open-source.
+game, incremental-game, roguelike, idle-game, ukrainian-game, pwa, калабаня, калюжа, scorm, scorm-1.2, scorm-2004, e-learning, course-builder, authoring-tool, lms, block-editor, quizzes, flashcards, badges, certificates, name-tags, csv-to-print, qr-code, car, windshield-contact, accident, дтп, stamp-generator, ukraine, ФОП, svg-export, dxf, laser-engraver, 35mm-film, dx-code, analog-photography, youtube, random-video, chrome-extension, new-tab, productivity, taxpayer-id, ІПН, trcn, test-data, qa-fixtures, javascript, typescript, web-app, no-backend, client-side, open-source.
 
 ## AI usage policy
 
