@@ -17,12 +17,12 @@
 - [stamp](https://dmat.pp.ua/stamp/): Stamp generator for Ukrainian sole proprietors (ФОП) and companies. Configure text and look in the browser; export SVG, PNG or DXF for a print shop or laser engraver. [source](https://github.com/dmmat/stamp)
 - [DX-decoder](https://dmat.pp.ua/DX-decoder/): Decoder for the DX-encoded barcode printed on 35mm film canisters. Returns ISO speed, exposures and latitude. [source](https://github.com/dmmat/DX-decoder)
 - [ytrandi](https://dmat.pp.ua/ytrandi/): Pick a truly random video from any YouTube channel — useful for digging past the recommendation algorithm. [source](https://github.com/dmmat/ytrandi)
-- [Reinvented New Tab](https://chrome.google.com/webstore/detail/reinvented-new-tab/mlbndllbhcdpjmalnmgljlfengkchdkk): Minimal, distraction-free new-tab page for Chrome. Available on the Chrome Web Store.
+- [Reinvented New Tab](https://tab.dmat.pp.ua/): Minimal, distraction-free new-tab page for Chrome and Firefox. The link redirects to the Chrome Web Store or Firefox Add-ons depending on the browser.
 - [fake_ua_tax_id](https://dmat.pp.ua/fake_ua_tax_id/): Generate syntactically valid (but fake) Ukrainian Taxpayer Registration Card Numbers (TRCN / ІПН) for test environments and QA fixtures. Not for real-world use. [source](https://github.com/dmmat/fake_ua_tax_id)
 
 ## Topics & tags
 
-game, incremental-game, roguelike, idle-game, ukrainian-game, pwa, калабаня, калюжа, scorm, scorm-1.2, scorm-2004, e-learning, course-builder, authoring-tool, lms, block-editor, quizzes, flashcards, badges, certificates, name-tags, csv-to-print, qr-code, car, windshield-contact, accident, дтп, stamp-generator, ukraine, ФОП, svg-export, dxf, laser-engraver, 35mm-film, dx-code, analog-photography, youtube, random-video, chrome-extension, new-tab, productivity, taxpayer-id, ІПН, trcn, test-data, qa-fixtures, javascript, typescript, web-app, no-backend, client-side, open-source.
+game, incremental-game, roguelike, idle-game, ukrainian-game, pwa, калабаня, калюжа, scorm, scorm-1.2, scorm-2004, e-learning, course-builder, authoring-tool, lms, block-editor, quizzes, flashcards, badges, certificates, name-tags, csv-to-print, qr-code, car, windshield-contact, accident, дтп, stamp-generator, ukraine, ФОП, svg-export, dxf, laser-engraver, 35mm-film, dx-code, analog-photography, youtube, random-video, chrome-extension, firefox-addon, new-tab, productivity, taxpayer-id, ІПН, trcn, test-data, qa-fixtures, javascript, typescript, web-app, no-backend, client-side, open-source.
 
 ## AI usage policy
 
